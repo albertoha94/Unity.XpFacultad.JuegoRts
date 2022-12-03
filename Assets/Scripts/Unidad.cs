@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unidad : MonoBehaviour
 {
@@ -7,12 +8,15 @@ public class Unidad : MonoBehaviour
     public int vidaMax;
     private int _vida;
 
+    public EquipoTest equipoTest;
+    public enum EquipoTest { azul, rojo };
     private Equipo _equipo;
     private bool _seleccionado;
 
     [Header("Componentes")]
     [SerializeField] GameObject panelUI;
     [SerializeField] Canvas vidaUI;
+    [SerializeField] Image barraDeVida;
     public Canvas seleccionadoUI;
 
     // Animator
@@ -28,7 +32,7 @@ public class Unidad : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Equipo =  GameManager.GetEquipo(((int)equipoTest));
     }
 
     // Update is called once per frame
@@ -44,6 +48,44 @@ public class Unidad : MonoBehaviour
         {
             _seleccionado = value;
             seleccionadoUI.gameObject.SetActive(value);
+        }
+    }
+
+    public virtual void Morir()
+    {
+        Destroy(gameObject);
+    }
+
+    public Equipo Equipo
+    {
+        get { return _equipo; }
+        set
+        {
+            _equipo= value;
+
+            if (_equipo== null)
+                return;
+
+            barraDeVida.color = _equipo.color;
+        }
+    }
+
+    public int Vida
+    {
+        get { return _vida; }
+        set
+        {
+            if (value > vidaMax)
+                _vida = vidaMax;
+            else if (value <= 0)
+            {
+                Morir();
+            }
+            else
+            {
+                _vida= value;
+            }
+            barraDeVida.fillAmount = (float)_vida / vidaMax;
         }
     }
 }

@@ -363,8 +363,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMax: 0
+  equipoTest: 0
   panelUI: {fileID: 3355825093463821770}
   vidaUI: {fileID: 0}
+  barraDeVida: {fileID: 1539099739537186936}
   seleccionadoUI: {fileID: 1982411900954805054}
   _velocidadMovimiento: 5
 --- !u!114 &5033815736363967707

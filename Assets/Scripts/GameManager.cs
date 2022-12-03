@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
         set
         {
             jugador1.energiaR = value;
-            // HUD_Energias.R.text = Mathf.Floor(jugador1.energiaR).ToString();
             HUD_Energias.R.text = jugador1.energiaR.ToString();
         }
     }
@@ -26,7 +25,7 @@ public class GameManager : MonoBehaviour
         set
         {
             jugador1.energiaG = value;
-            HUD_Energias.G.text = Mathf.Floor(jugador1.energiaG).ToString();
+            HUD_Energias.G.text = jugador1.energiaG.ToString();
         }
     }
     public static float EnergiaB
@@ -35,8 +34,24 @@ public class GameManager : MonoBehaviour
         set
         {
             jugador1.energiaB = value;
-            HUD_Energias.B.text = Mathf.Floor(jugador1.energiaB).ToString();
+            HUD_Energias.B.text = jugador1.energiaB.ToString();
         }
+    }
+
+    #endregion
+
+    #region Equipos
+
+    private static List<Equipo> equipos;
+
+    public static Equipo GetEquipo(int indice)
+    {
+        // prevenir que existe el indice.
+        if (indice > equipos.Count)
+        {
+            return null;
+        }
+        return equipos[indice];
     }
 
     #endregion
@@ -57,7 +72,6 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private List<Equipo> equipos;
     private Unidad _objetoSeleccionado;
 
     public void Awake()
@@ -74,7 +88,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        EnergiaR = jugador1.energiaR;
+        EnergiaG = jugador1.energiaG;
+        EnergiaB = jugador1.energiaB;
     }
 
     // Update is called once per frame
@@ -103,18 +119,43 @@ public class GameManager : MonoBehaviour
             // Si hay alguna unidad seleccionada y esta es un movil.
             if (ObjetoSeleccionado)
             {
+
+                // Si la unidad seleccionada es un movil.
                 if (ObjetoSeleccionado.CompareTag("Movil"))
                 {
                     Movil movil = ObjetoSeleccionado.GetComponent<Movil>();
 
+                    // Revisamos si es un recolector.
                     if (movil.TryGetComponent(out Recolector recolector))
                     {
+
+                        // Obtenemos el objecto al que le dimos clic derecho.
                         var go = Mouse.GO;
                         Debug.Log(go.name);
 
+                        // Revisamos si es energia.
                         if (go.CompareTag("Energia"))
                         {
+
+                            // Le pasamos la referencia de la energia.
                             recolector.Recolectar(go.GetComponent<Energia>());
+
+                            // Si se va a recolectar energia, terminamos la funcion actual.
+                            return;
+                        }
+                    }
+                    else if (movil.TryGetComponent(out UnidadAtaque unidadAtaque))
+                    {
+                        var go = Mouse.GO;
+
+                        // Revisamos si nuestro target es una unidad.
+                        if (go.TryGetComponent(out Unidad target))
+                        {
+                            // Si no son del mismo equipo...
+                            if (unidadAtaque.movil.Equipo.id != target.Equipo.id)
+                            {
+
+                            }
                             return;
                         }
                     }
@@ -158,12 +199,10 @@ public class GameManager : MonoBehaviour
             // Si se selecciono al mismo objeto.
             if (_objetoSeleccionado == value)
                 return;
-            else
+
+            if (_objetoSeleccionado)
             {
-                if (_objetoSeleccionado)
-                {
-                    _objetoSeleccionado.Seleccionado = false;
-                }
+                _objetoSeleccionado.Seleccionado = false;
             }
 
             _objetoSeleccionado = value;
