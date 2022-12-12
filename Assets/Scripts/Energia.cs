@@ -18,7 +18,7 @@ public class Energia : MonoBehaviour
             case EnergiaTipo.Morada:
                 return Color.magenta;
             case EnergiaTipo.Azul:
-                return Color.blue;
+                return Color.yellow;
 
             default: return Color.clear;
         }

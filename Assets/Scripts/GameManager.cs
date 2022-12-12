@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,7 +14,7 @@ public class GameManager : MonoBehaviour
         get => jugador1.energiaR;
         set
         {
-            jugador1.energiaR = value;
+            jugador1.energiaR = value * 100;
             HUD_Energias.R.text = jugador1.energiaR.ToString();
         }
     }
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
         get => jugador1.energiaG;
         set
         {
-            jugador1.energiaG = value;
+            jugador1.energiaG = value * 100;
             HUD_Energias.G.text = jugador1.energiaG.ToString();
         }
     }
@@ -33,7 +32,7 @@ public class GameManager : MonoBehaviour
         get => jugador1.energiaB;
         set
         {
-            jugador1.energiaB = value;
+            jugador1.energiaB = value * 100;
             HUD_Energias.B.text = jugador1.energiaB.ToString();
         }
     }

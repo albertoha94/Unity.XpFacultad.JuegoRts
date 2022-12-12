@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e8acc8acf8ee74d9054dfde53aa052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacidad: 0.25
+  capacidad: 0.1
   energiaFill: {fileID: 800783895579599427}
 --- !u!54 &7944525640049205547
 Rigidbody:
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.296
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.769
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
