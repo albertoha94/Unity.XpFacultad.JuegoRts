@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         get => jugador1.energiaR;
         set
         {
-            jugador1.energiaR = value * 100;
+            jugador1.energiaR = value;
             HUD_Energias.R.text = jugador1.energiaR.ToString();
         }
     }
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         get => jugador1.energiaG;
         set
         {
-            jugador1.energiaG = value * 100;
+            jugador1.energiaG = value;
             HUD_Energias.G.text = jugador1.energiaG.ToString();
         }
     }
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         get => jugador1.energiaB;
         set
         {
-            jugador1.energiaB = value * 100;
+            jugador1.energiaB = value;
             HUD_Energias.B.text = jugador1.energiaB.ToString();
         }
     }

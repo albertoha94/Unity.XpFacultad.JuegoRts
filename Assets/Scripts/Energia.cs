@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class Energia : MonoBehaviour
@@ -19,7 +16,6 @@ public class Energia : MonoBehaviour
                 return Color.magenta;
             case EnergiaTipo.Azul:
                 return Color.yellow;
-
             default: return Color.clear;
         }
     }
@@ -29,13 +25,9 @@ public class Energia : MonoBehaviour
 
     [SerializeField] private float _cantidadEnergia;
 
-    private Transform mesh;
-
     private void OnValidate()
     {
-        mesh = transform.GetChild(0);
         CantidadEnergia = _cantidadEnergia;
-        GetComponent<BoxCollider>().size = Vector3.one * _cantidadEnergia;
     }
 
     public float CantidadEnergia
@@ -43,14 +35,12 @@ public class Energia : MonoBehaviour
         get { return _cantidadEnergia; }
         set
         {
-            if (value<= 0)
+            if (value <= 0)
             {
                 Destroy(gameObject);
                 return;
             }
-
             _cantidadEnergia = value;
-            mesh.localScale = Vector3.one * _cantidadEnergia;
         }
     }
 }

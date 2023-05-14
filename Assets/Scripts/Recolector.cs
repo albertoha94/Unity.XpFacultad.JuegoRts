@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class Recolector : MonoBehaviour
 {
 
-    public float capacidad = 0.25f;
+    public float capacidad = 10f;
     [SerializeField] private Image energiaFill;
 
     private float _energiaRecolectada = 0;
     private Energia energiaAsignada;
 
-    private float indiceRecoleccion = 0.001f;
+    private float indiceRecoleccion = 0.1f;
     bool vaciando = false;
 
     // Componentes
