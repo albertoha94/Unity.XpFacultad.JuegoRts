@@ -2,7 +2,7 @@
 
 Game created as a project for class. Game is designed to be a basic prototype with RTS Elements, game has the ability to click on some units, select them, move them and make them collect resources!
 
-# Unity.XpFacultad.JuegoRts
+# Play
 
 Play it on [Unity Play](https://play.unity.com/mg/other/rts-programming-exercise)
 
